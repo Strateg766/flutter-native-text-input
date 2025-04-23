@@ -2,19 +2,19 @@ group 'dev.henryleunghk.flutter_native_text_input'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.6.10'
+    ext.kotlin_version = '1.8.10' // обновлённая версия Kotlin
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath 'com.android.tools.build:gradle:8.1.0' // ✅ обновлённый AGP
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
-rootProject.allprojects {
+allprojects {
     repositories {
         google()
         mavenCentral()
@@ -25,7 +25,13 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 31
+    namespace 'dev.henryleunghk.flutter_native_text_input' // ✅ обязательное поле
+
+    compileSdkVersion 34 // или 34 — зависит от твоей цели
+
+    defaultConfig {
+        minSdkVersion 16
+    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -38,10 +44,6 @@ android {
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
-    }
-
-    defaultConfig {
-        minSdkVersion 16
     }
 }
 
