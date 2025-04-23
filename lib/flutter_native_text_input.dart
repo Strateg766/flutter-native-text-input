@@ -376,18 +376,7 @@ class _NativeTextInputState extends State<NativeTextInput> {
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-        minHeight: _minHeight,
-        maxHeight: _maxHeight > _minHeight ? _maxHeight : _minHeight,
-      ),
-      child: LayoutBuilder(
-        builder: (context, layout) => Container(
-          decoration: widget.decoration,
-          child: _platformView(layout),
-        ),
-      ),
-    );
+    return _platformView(const BoxConstraints());
   }
 
   void _createMethodChannel(int nativeViewId) {
@@ -424,7 +413,7 @@ class _NativeTextInputState extends State<NativeTextInput> {
       "textContentType": widget.textContentType?.toString(),
       "keyboardAppearance": widget.iosOptions?.keyboardAppearance.toString(),
       "keyboardType": widget.keyboardType.toString(),
-      "width": constraints.maxWidth,
+      //"width": constraints.maxWidth,
     };
 
     if (widget.style != null && widget.style?.fontSize != null) {
